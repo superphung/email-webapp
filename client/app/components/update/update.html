@@ -1,0 +1,55 @@
+<md-content>
+  <md-card layout="row" layout-align="center center">
+    <md-input-container>
+      <input ng-model="$ctrl.fname" type="text" placeholder="Prenom">
+    </md-input-container>
+    <md-input-container>
+      <input ng-model="$ctrl.lname" type="text" placeholder="Nom">
+    </md-input-container>
+    <md-input-container>
+      <input ng-model="$ctrl.email" type="text" placeholder="Email">
+    </md-input-container>
+    <md-input-container>
+      <input ng-model="$ctrl.company" type="text" placeholder="Entreprise">
+    </md-input-container>
+    <md-input-container>
+      <input ng-model="$ctrl.pays" type="text" placeholder="Pays">
+    </md-input-container>
+    <md-button class="md-accent md-raised" ng-click="$ctrl.searchPattern()">valider</md-button>
+  </md-card>
+
+  <div layout="row" layout-align="center center">
+    <input class="ng-hide" id="input-file-id" multiple type="file" on-read-file="$ctrl.show($content)"/>
+    <label for="input-file-id" class="md-button md-raised md-primary">Choose Files</label>
+    <md-button ng-if="$ctrl.patterns.length" style="position: absolute; right: 0" class="md-button md-accent md-raised" ng-click="$ctrl.uploadAll()">upload all</md-button>
+  </div>
+
+  <md-card>
+    <md-table-container>
+      <table md-table multiple>
+        <thead md-head md-order="order" ng-if="$ctrl.patterns.length">
+          <tr md-row>
+            <th md-column md-order-by="fname"><span>Prenom</span></th>
+            <th md-column md-order-by="lname"><span>Nom</span></th>
+            <th md-column md-order-by="email"><span>Email</span></th>
+            <th md-column><span>Pattern</span></th>
+            <th md-column md-order-by="company"><span>Entreprise</span></th>
+            <th md-column md-order-by="city"><span>Pays</span></th>
+          </tr>           
+        </thead>
+        <tbody md-body>
+          <tr md-row md-select="pattern" md-select-id="name" md-auto-select ng-repeat="(patternIndex, pattern) in $ctrl.patterns | orderBy: order" ng-class="{'upload': pattern.upload }">
+            <td md-cell style="width: 15%"><input class="input-remove" ng-model="pattern.fname" type="text"></td>
+            <td md-cell style="width: 15%"><input class="input-remove" ng-model="pattern.lname" type="text"></td>
+            <td md-cell style="width: 20%"><input class="input-remove" ng-model="pattern.email" type="text"></td>
+            <td md-cell style="width: 25%"><input class="input-remove" ng-model="pattern.pattern" type="text"></td>
+            <td md-cell style="width: 10%"><input class="input-remove" ng-model="pattern.company" type="text"></td>
+            <td md-cell style="width: 10%"><input class="input-remove" ng-model="pattern.city" type="text"></td>
+            <td md-cell style="padding: 0; width: 2%;" ng-click="$ctrl.deletePattern(patternIndex)"><i class="material-icons">file_upload</i></td>
+            <td md-cell style="padding: 0; width: 2%" ng-click="$ctrl.deletePattern(patternIndex)"><i class="material-icons">delete</i></td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+  </md-card>
+</md-content>

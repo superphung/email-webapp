@@ -1,0 +1,13 @@
+<md-content layout="column">
+  <md-card style="width: 380px;
+  margin: 4em auto;
+  padding: 3em 2em 2em 2em;"">
+    <md-input-container>
+      <input type="text" ng-model="$ctrl.credentials.username" placeholder="username">
+    </md-input-container>
+    <md-input-container>
+      <input type="password" ng-model="$ctrl.credentials.password" placeholder="password">
+    </md-input-container>
+    <md-button ng-click="$ctrl.log()" class="md-primary md-raised">Login</md-button>
+  </md-card>
+</md-content>

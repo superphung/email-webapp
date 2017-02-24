@@ -1,0 +1,15 @@
+.input-remove {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+}
+
+.input-remove:focus {
+  border-bottom: 1px solid #fff;
+}
+
+.upload {
+  background-color: #86e886;
+  transition: background-color 0.1s linear;
+}

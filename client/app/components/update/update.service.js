@@ -1,8 +1,8 @@
-export const UpdateService = ($http, $q, $window) => {
+export const UpdateService = ($http, $q, $window, API) => {
   "ngInject"
 
-  const API = 'http://localhost:3000';
-  const API_EVENT = 'http://localhost:3001';
+  const API_PATTERN = `${API}:3000`;
+  const API_EVENT = `${API}:3001`;
 
   return {
     parseCsv,
@@ -30,7 +30,7 @@ export const UpdateService = ($http, $q, $window) => {
         return line.split(',');
       })
       .map(line => {
-        return Object.assign({fname: line[0], lname: line[1], email: line[2]}, line[3] && {company: line[3]});
+        return Object.assign({fname: line[0], lname: line[1], email: line[2]}, line[3] && {company: line[3]}, line[4] && {city: line[4]});
       });
     return $q.when(parsed);
   }
@@ -38,7 +38,7 @@ export const UpdateService = ($http, $q, $window) => {
   function emailToPattern(users) {
     return $http({
       method: 'POST',
-      url: `${API}/emailToPattern`,
+      url: `${API_PATTERN}/emailToPattern`,
       data: {
         users
       }

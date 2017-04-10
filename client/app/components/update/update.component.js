@@ -19,7 +19,7 @@ export const UpdateComponent = {
       if (!this.fname || !this.lname || !this.email) {
         return;
       }
-      this.UpdateService.emailToPattern([{fname: this.fname, lname: this.lname, email: this.email}])
+      this.UpdateService.emailToPattern([{fname: this.fname, lname: this.lname, email: this.email, company: this.company, city: this.city}])
         .then(patterns => {
           if (patterns.length === 0) {
             return;

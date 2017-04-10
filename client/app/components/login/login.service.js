@@ -1,7 +1,7 @@
-export const LoginService = ($http, Auth, $timeout, $state, $window) => {
+export const LoginService = ($http, Auth, $timeout, $state, $window, API) => {
   "ngInject";
 
-  const API_AUTH = 'http://localhost:3002';
+  const API_AUTH = `${API}:3003`;
 
   return {
     login

@@ -1,4 +1,4 @@
-const routes = ($stateProvider) => {
+const routes = ($stateProvider, $urlRouterProvider) => {
   "ngInject";
 
   function load(modulePath) {
@@ -19,12 +19,15 @@ const routes = ($stateProvider) => {
     return Auth.authenticate();
   }
 
+
   $stateProvider
-    .state('mail', {
-      url: '/',
+    .state('find', {
+      url: '/find',
+      template: '<find></find>',
       showNav: true,
       resolve: {
-        authenticate: ['Auth', auth]
+        authenticate: ['Auth', auth],
+        lazyload: ['$q', '$ocLazyLoad', load('find')]
       }
     })
     .state('update', {
@@ -43,6 +46,7 @@ const routes = ($stateProvider) => {
         lazyload: ['$q', '$ocLazyLoad', load('login')]
       }
     });
+  $urlRouterProvider.otherwise('/find');
 };
 
 export default routes;

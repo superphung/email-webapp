@@ -1,0 +1,34 @@
+<md-content>
+  <md-card layout="row" layout-align="center center">
+    <md-input-container>
+      <input ng-model="$ctrl.fname" type="text" placeholder="Prenom">
+    </md-input-container>
+    <md-input-container>
+      <input ng-model="$ctrl.lname" type="text" placeholder="Nom">
+    </md-input-container>
+    <md-input-container>
+      <input ng-model="$ctrl.company" type="text" placeholder="Entreprise">
+    </md-input-container>
+    <md-input-container>
+      <input ng-model="$ctrl.city" type="text" placeholder="Pays">
+    </md-input-container>
+    <md-button class="md-accent md-raised" ng-click="$ctrl.searchMail()">valider</md-button>
+  </md-card>
+
+  <div layout="row" layout-align="center center">
+    <input class="ng-hide" id="input-file-id" multiple type="file" on-read-file="$ctrl.show($content)"/>
+    <label for="input-file-id" class="md-button md-raised md-primary">Choose Files</label>
+    <md-button ng-if="$ctrl.users.length" on-download get-csv="$ctrl.download()" style="position: absolute; right: 0" class="md-button md-accent md-raised">Download</md-button>
+  </div>
+
+  <div ng-if="$ctrl.users.length">
+    <md-card ng-repeat="user in $ctrl.users" style="padding: 10px">
+      <div>{{user.fname}} {{user.lname}} {{user.company}}</div>
+      <md-divider></md-divider>
+      <div ng-repeat="mail in user.mails">
+        {{mail.found}} | {{mail.company}}
+      </div>
+    </md-card>
+  </div>
+
+</md-content>

@@ -21,5 +21,8 @@ export const AppModule = angular
     SharedModule
   ])
   .config(routes)
-  .config(($mdThemingProvider) => $mdThemingProvider.theme('default').primaryPalette('blue'))
+  .config(($mdThemingProvider) => {
+    "ngInject";
+    $mdThemingProvider.theme('default').primaryPalette('blue')
+  })
   .component('app', AppComponent)

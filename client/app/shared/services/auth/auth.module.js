@@ -3,13 +3,15 @@ import angular from 'angular';
 export const AuthModule = angular
   .module('AuthModule', [
   ])
-  .service('Auth', ($window, $q, $http, $state, $timeout) => {
+  .service('Auth', ($window, $q, $http, $state, $timeout, API) => {
     "ngInject";
 
-    const API_AUTH = 'http://localhost:3002'
+    const API_AUTH = `${API}:3003`;
 
     return {
-      authenticate
+      authenticate,
+      logout,
+      isLog
     }
 
     function authenticate() {
@@ -24,7 +26,18 @@ export const AuthModule = angular
         headers: {
           Authorization: `Bearer ${token}`
         }
+      }).catch(err => {
+        delete $window.localStorage.token;
       });      
+    }
+
+    function logout() {
+      delete $window.localStorage.token;
+      $timeout(() => $state.go('login'));
+    }
+
+    function isLog() {
+      return $window.localStorage.token;
     }
   })
   .name;

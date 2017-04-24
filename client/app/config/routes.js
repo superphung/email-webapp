@@ -26,7 +26,7 @@ const routes = ($stateProvider, $urlRouterProvider) => {
       template: '<find></find>',
       showNav: true,
       resolve: {
-        authenticate: ['Auth', auth],
+        // authenticate: ['Auth', auth],
         lazyload: ['$q', '$ocLazyLoad', load('find')]
       }
     })
@@ -35,7 +35,7 @@ const routes = ($stateProvider, $urlRouterProvider) => {
       template: '<update></update>',
       showNav: true,
       resolve: {
-        authenticate: ['Auth', auth ],
+        // authenticate: ['Auth', auth ],
         lazyload: [ '$q', '$ocLazyLoad', load('update')]
       }
     })
